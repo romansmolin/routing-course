@@ -41,6 +41,7 @@ function App() {
                 <Route path="pricing" element={<HostVanPricing />} /> 
             </Route>  
           </Route>
+          <Route path="*" element={<h1>Not Found</h1>} />
         </Route>
       </Routes>
 

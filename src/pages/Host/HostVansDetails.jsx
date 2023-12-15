@@ -37,7 +37,7 @@ const HostVansDetails = () => {
                     </div>
                 </div>
                 <HostVanNaviagtion />
-                <Outlet />
+                <Outlet context={{van}}/>
             </div>
         </section>
     )
