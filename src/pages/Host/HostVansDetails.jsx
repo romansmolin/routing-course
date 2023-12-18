@@ -1,20 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { useParams, Link, Outlet } from 'react-router-dom';
+import { useParams, Link, Outlet, useLoaderData } from 'react-router-dom';
 import HostVanNaviagtion from '../../components/HostVanNaviagtion';
+import { getHostVans } from '../../api';
+import { requireAuth } from '../../utils';
+
+export async function loader ({params}) {
+    await requireAuth()
+    return getHostVans(params.id)
+}
 
 const HostVansDetails = () => {
-    const [van, setVan] = useState(null);
-    const params = useParams()
-
-    useEffect(() => {
-        fetch(`/api/host/vans/${params.id}`)
-            .then(res => res.json())
-            .then(data => setVan(data.vans))
-    }, [params.id])
-
-    if (!van) {
-        return <h1>Loading...</h1>
-    }
+    const van = useLoaderData();
 
     return (
         <section>
